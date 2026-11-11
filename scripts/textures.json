@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "rooms": {
+    "lounge": {
+      "srcDir": "assets-src/lounge",
+      "outDir": "public/textures/lounge",
+      "textures": [
+        { "id": "mural", "src": "4.jpg", "quad": [[157, 98], [1040, 170], [1031, 434], [176, 451]], "panel": "mural", "gain": [1.36, 1.44, 1.6] },
+        { "id": "mona", "src": "4.jpg", "quad": [[1117, 127], [1247, 140], [1242, 305], [1107, 305]], "panel": "mona", "gain": [1.22, 1.35, 1.5] },
+        { "id": "banner", "src": "1.jpg", "quad": [[487, 265], [921, 296], [919, 524], [490, 538]], "panel": "banner" },
+        { "id": "smoke-door", "src": "1.jpg", "quad": [[193, 372], [378, 378], [378, 728], [197, 738]], "panel": "smoke" },
+        { "id": "collage-right", "src": "5.jpg", "quad": [[864, 313], [1004, 307], [1004, 474], [864, 478]], "panel": "collage-right" },
+        { "id": "collage-right-far", "src": "3.jpg", "quad": [[286, 360], [381, 360], [381, 457], [286, 457]], "panel": "collage-right-far" },
+        { "id": "collage-left", "src": "6.jpg", "quad": [[175, 212], [350, 232], [350, 498], [175, 503]], "panel": "collage-left" },
+        { "id": "red-bar", "src": "6.jpg", "quad": [[478, 278], [645, 283], [640, 600], [478, 605]], "panel": "red-bar-photo" },
+        { "id": "column-sign", "src": "6.jpg", "quad": [[880, 153], [1020, 138], [1006, 688], [864, 664]], "column": "col-left:s", "gain": [1.6, 2.4, 2.6] }
+      ]
+    }
+  }
+}

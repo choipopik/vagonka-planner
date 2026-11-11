@@ -1,0 +1,10 @@
+/* Стили пакета «Взаимодействие» (W2). Оверлеи редактора рисуются внутри canvas; в DOM — только подсказка в подвале. */
+
+.hud-hint {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 13px;
+  line-height: 18px;
+}

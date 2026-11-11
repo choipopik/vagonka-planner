@@ -1,0 +1,240 @@
+/* Меню макетов (W4). Токены и общие классы (.btn, .icon-btn, .list, .row) — из src/styles.css. */
+
+.layouts-menu {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+/* ---------- Кнопка с названием текущего макета ---------- */
+
+.btn.layouts-toggle {
+  max-width: 260px;
+  min-width: 0;
+}
+
+.layouts-toggle-label {
+  flex: none;
+  color: var(--muted);
+}
+
+.layouts-toggle-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.layouts-caret {
+  flex: none;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* ---------- Индикатор сохранения (виден всегда) ---------- */
+
+.layouts-status {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  /* Самая длинная подпись — «Не сохраняется»: ширина не скачет при смене статуса. */
+  min-width: 118px;
+  font-size: 12px;
+  white-space: nowrap;
+  color: var(--muted);
+  cursor: default;
+}
+
+.layouts-status::before {
+  content: '';
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.layouts-status-ok::before {
+  background: #5fae6b;
+}
+
+.layouts-status-busy::before {
+  background: var(--muted);
+  animation: layouts-pulse 0.9s ease-in-out infinite alternate;
+}
+
+.layouts-status-dirty {
+  color: var(--text);
+}
+
+.layouts-status-dirty::before {
+  background: var(--warn);
+}
+
+.layouts-status-error {
+  color: var(--error);
+}
+
+/* Постоянная метка «Не сохраняется» (storage === 'memory'). */
+.layouts-status-warn {
+  padding: 2px 8px;
+  color: var(--warn);
+  border: 1px solid rgba(217, 164, 65, 0.45);
+  border-radius: 999px;
+}
+
+@keyframes layouts-pulse {
+  from {
+    opacity: 0.35;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .layouts-status-busy::before {
+    animation: none;
+  }
+}
+
+/* ---------- Выпадающая панель ---------- */
+
+.layouts-panel {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 8px);
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 340px;
+  max-width: calc(100vw - 28px);
+  max-height: min(70vh, 560px);
+  padding: 10px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: #1c1a1e;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.55);
+}
+
+.layouts-note {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.35;
+  color: var(--muted);
+}
+
+.layouts-note-warn {
+  padding: 6px 8px;
+  color: var(--warn);
+  border: 1px solid rgba(217, 164, 65, 0.45);
+  border-radius: 6px;
+}
+
+/* ---------- Список макетов ---------- */
+
+.layouts-list:empty {
+  display: none;
+}
+
+.list > li.layouts-item {
+  padding: 2px 2px 2px 0;
+}
+
+.layouts-open {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
+  padding: 5px 8px;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Текущий макет — не «выключенная» кнопка, а отмеченная строка. */
+.layouts-open:disabled {
+  opacity: 1;
+  cursor: default;
+}
+
+.layouts-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.layouts-time {
+  flex: none;
+  font-size: 11px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.layouts-confirm {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 5px 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---------- Действия и форма названия ---------- */
+
+.layouts-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.layouts-files {
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+
+.btn.layouts-small {
+  flex: none;
+  padding: 4px 10px;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.btn.layouts-danger:hover:not(:disabled) {
+  background: rgba(224, 86, 79, 0.18);
+  border-color: rgba(224, 86, 79, 0.5);
+}
+
+.layouts-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.layouts-form-label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.layouts-form-label input {
+  width: 100%;
+  font-size: 14px;
+}
+
+.layouts-file-input {
+  display: none;
+}

@@ -1,0 +1,346 @@
+/* Общие стили приложения (F). Пакеты добавляют свои файлы: editor.css, assets.css, layouts.css, panels.css. */
+
+:root {
+  --bg: #141316;
+  --panel: rgba(28, 26, 30, 0.92);
+  --line: rgba(255, 255, 255, 0.1);
+  --text: #f1ece4;
+  --muted: #a39c93;
+  --accent: #c8322f;
+  --radius: 8px;
+  /* Добавлено на этапе 2. */
+  --field: #242227;
+  --hover: rgba(255, 255, 255, 0.06);
+  --warn: #d9a441;
+  --error: #e0564f;
+  --side-width: 280px;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  color: var(--text);
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+/* ---------- Сетка: toolbar / (left | viewport | right) / hint ---------- */
+
+.app {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr);
+  height: 100%;
+}
+
+.workspace {
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+}
+
+.viewport {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 0;
+}
+
+.viewport canvas {
+  display: block;
+  touch-action: none;
+}
+
+.side {
+  position: relative;
+  flex: 0 0 var(--side-width);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 0;
+  padding: 12px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: var(--panel);
+}
+
+.side-left {
+  border-right: 1px solid var(--line);
+}
+
+.side-right {
+  border-left: 1px solid var(--line);
+}
+
+/* Панель без содержимого (заглушки фундамента) места не занимает. */
+.side:empty {
+  display: none;
+}
+
+/* ---------- Панель инструментов ---------- */
+
+.toolbar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  padding: 8px 14px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  font-weight: 650;
+  letter-spacing: 0.01em;
+}
+
+.dims {
+  margin-left: auto;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.segmented {
+  display: flex;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.segmented button {
+  padding: 6px 14px;
+  background: transparent;
+  border: 0;
+  border-right: 1px solid var(--line);
+  cursor: pointer;
+}
+
+.segmented button:last-child {
+  border-right: 0;
+}
+
+.segmented button:hover {
+  background: var(--hover);
+}
+
+.segmented button[aria-pressed='true'] {
+  background: var(--accent);
+}
+
+/* ---------- Подвал ---------- */
+
+.hint {
+  min-height: 30px;
+  padding: 6px 14px;
+  color: var(--muted);
+  background: var(--panel);
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+
+/* ---------- Элементы форм ---------- */
+
+select,
+button,
+input,
+textarea {
+  font: inherit;
+  color: var(--text);
+}
+
+select,
+input[type='text'],
+input[type='number'],
+textarea {
+  padding: 5px 8px;
+  background: var(--field);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
+input[type='checkbox'],
+input[type='range'] {
+  accent-color: var(--accent);
+}
+
+button:focus-visible,
+select:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #f1ece4;
+  outline-offset: 2px;
+}
+
+button:disabled,
+select:disabled,
+input:disabled,
+textarea:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Подпись + поле в одну строку. */
+.field,
+.check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+}
+
+.check {
+  cursor: pointer;
+}
+
+/* ---------- Общие классы панелей ---------- */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.panel-title {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Горизонтальный ряд элементов. */
+.row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: var(--field);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn:hover:not(:disabled) {
+  background: #2e2b32;
+}
+
+.btn[aria-pressed='true'] {
+  background: var(--accent);
+  border-color: transparent;
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.icon-btn:hover:not(:disabled) {
+  background: var(--hover);
+  color: var(--text);
+}
+
+.icon-btn[aria-pressed='true'] {
+  color: var(--text);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.list > li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  padding: 4px 6px;
+  border-radius: 6px;
+}
+
+.list > li:hover {
+  background: var(--hover);
+}
+
+.list > li[aria-selected='true'] {
+  background: rgba(200, 50, 47, 0.28);
+}
+
+/* ---------- Отключённое состояние (режим прогулки) ---------- */
+
+.is-disabled > * {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.side.is-disabled::before {
+  content: attr(data-note);
+  flex: none;
+  padding: 6px 8px;
+  font-size: 12px;
+  color: var(--warn);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
+/* ---------- Тост ---------- */
+
+.toast {
+  position: absolute;
+  z-index: 10;
+  left: 50%;
+  bottom: 48px;
+  transform: translateX(-50%);
+  max-width: min(560px, calc(100% - 24px));
+  padding: 8px 16px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--muted);
+  border-radius: var(--radius);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+  pointer-events: none;
+}
+
+.toast-warn {
+  border-left-color: var(--warn);
+}
+
+.toast-error {
+  border-left-color: var(--error);
+}

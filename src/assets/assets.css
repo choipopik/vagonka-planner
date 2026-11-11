@@ -1,0 +1,140 @@
+/* Полка пользовательских файлов (W3). Токены и общие классы (.panel, .btn, .icon-btn, .row) — из src/styles.css. */
+
+.assets-shelf {
+  margin-top: 4px;
+  padding: 8px;
+  border: 1px dashed transparent;
+  border-radius: var(--radius);
+  transition: border-color 0.12s, background-color 0.12s;
+}
+
+/* Над полкой держат файл. */
+.assets-shelf.is-over {
+  border-color: var(--accent);
+  background: rgba(200, 50, 47, 0.1);
+}
+
+.assets-head {
+  justify-content: space-between;
+}
+
+.assets-upload {
+  flex: none;
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+/* Настоящее поле выбора файла скрыто: его открывает кнопка «Загрузить…». */
+.assets-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.assets-drop,
+.assets-hint {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.assets-drop {
+  padding: 16px 10px;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  text-align: center;
+}
+
+.assets-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.assets-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  padding: 6px;
+  background: var(--field);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.assets-thumb {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 4px;
+  /* Шахматка под прозрачными картинками. */
+  background-color: #2b282e;
+  background-image:
+    linear-gradient(45deg, #35323a 25%, transparent 25%, transparent 75%, #35323a 75%),
+    linear-gradient(45deg, #35323a 25%, transparent 25%, transparent 75%, #35323a 75%);
+  background-position:
+    0 0,
+    6px 6px;
+  background-size: 12px 12px;
+  object-fit: contain;
+}
+
+.assets-thumb-empty {
+  background-image: none;
+}
+
+.assets-thumb-model {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: none;
+  color: var(--muted);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.assets-name {
+  overflow: hidden;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.assets-caption {
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.assets-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+}
+
+.assets-btn {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 3px 6px;
+  font-size: 11px;
+}
+
+.assets-remove {
+  width: 24px;
+  height: 24px;
+  margin-left: auto;
+}
+
+.assets-remove:hover:not(:disabled) {
+  color: var(--error);
+}

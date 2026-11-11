@@ -1,0 +1,6 @@
+node_modules
+dist
+.DS_Store
+# исходные фото зала и референсы декора остаются только локально
+assets-src
+decor_refs
